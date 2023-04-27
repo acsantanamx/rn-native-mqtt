@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
   s.framework    = "Foundation"
 
   s.dependency "React"
-  s.dependency "CocoaAsyncSocket"
   s.dependency "Starscream", "~> 3.0.6"
 end
 
