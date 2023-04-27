@@ -30,7 +30,7 @@
   "licenseFilename": "LICENSE.md",
   "readmeFilename": "README.md",
   "dependencies": {
-    "buffer": "^5.5.0",
+    "buffer": "^5.7.1",
     "random-id": "^1.0.3",
     "tiny-emitter": "^2.1.0"
   },
