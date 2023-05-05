@@ -22,5 +22,6 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   s.dependency "Starscream", "~> 3.0.6"
+  s.dependency "CocoaMQTT"
 end
 
