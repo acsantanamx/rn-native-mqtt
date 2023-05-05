@@ -4,21 +4,18 @@ buildscript {
     }
     repositories {
         google()
-        //jcenter()
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
         // Matches recent template from React Native (0.60)
         // https://github.com/facebook/react-native/blob/0.60-stable/template/android/build.gradle#L16
-        //classpath("com.android.tools.build:gradle:${safeExtGet('gradlePluginVersion', '3.4.1')}")
-        classpath("com.android.tools.build:gradle:4.2.2")
+        classpath("com.android.tools.build:gradle:${safeExtGet('gradlePluginVersion', '3.4.1')}")
     }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-//apply plugin: 'maven' //fix
 
 // Matches values in recent template from React Native 0.59 / 0.60
 // https://github.com/facebook/react-native/blob/0.59-stable/template/android/build.gradle#L5-L9
@@ -57,7 +54,7 @@ repositories {
 
 dependencies {
     implementation "com.facebook.react:react-native:${safeExtGet('reactnativeVersion', '+')}"
-    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
     implementation group: 'com.heroku.sdk', name: 'env-keystore', version: '1.0.4'
 }
 
@@ -89,12 +86,16 @@ def configureReactNativePom(def pom) {
     }
 }
 
+configurations {
+    customConfig.extendsFrom implementation
+}
+
 afterEvaluate { project ->
 
     task androidJavadoc(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
         classpath += files(android.bootClasspath)
-        classpath += files(project.getConfigurations().getByName('compile').asList())
+        classpath += files(project.getConfigurations().getByName('customConfig').asList())
         include '**/*.java'
     }
 
@@ -120,7 +121,7 @@ afterEvaluate { project ->
         archives androidSourcesJar
         archives androidJavadocJar
     }
-
+    /*
     task installArchives(type: Upload) {
         configuration = configurations.archives
         repositories.mavenDeployer {
@@ -130,4 +131,5 @@ afterEvaluate { project ->
             configureReactNativePom pom
         }
     }
+     */
 }
