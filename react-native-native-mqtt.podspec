@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.framework    = "Foundation"
 
   s.dependency "React"
-  s.dependency "Starscream", "~> 3.0.6"
+  s.dependency "Starscream"
   s.dependency "CocoaMQTT/WebSockets"
 end
 
